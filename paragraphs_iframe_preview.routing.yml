@@ -5,4 +5,4 @@ paragraphs_iframe_preview.paragraph_iframe_preview:
   options:
     no_cache: TRUE
   requirements:
-    _role: 'administrator+content_editor'
+    _permission: 'access content overview'
