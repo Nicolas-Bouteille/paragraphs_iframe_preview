@@ -1,0 +1,10 @@
+{
+  "name": "nicolas-bouteille/paragraphs_iframe_preview",
+  "description": "Render paragraph preview using the frontend theme inside an iframe.",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/core": "^10 || ^11",
+    "drupal/paragraphs": "^1.0"
+  }
+}
