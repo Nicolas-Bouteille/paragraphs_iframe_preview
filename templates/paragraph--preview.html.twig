@@ -1,0 +1,5 @@
+{{ attach_library('paragraphs_iframe_preview/paragraph_iframe_preview') }}
+
+<div class="paragraph-iframe-preview {{ paragraph_bundle }}">
+  <iframe src="{{ path('paragraphs_iframe_preview.paragraph_iframe_preview', {'paragraph_uuid' : paragraph_uuid }) }}"></iframe>
+</div>

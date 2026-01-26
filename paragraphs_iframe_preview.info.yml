@@ -1,0 +1,11 @@
+name: Paragraphs iFrame Preview
+type: module
+description: The preview of the paragraph is displayed in an iFrame with frontend theme so that the result is as faithful as possible
+package: Paragraphs
+core_version_requirement: ^10.3 || ^11
+
+dependencies:
+  - paragraphs:paragraphs
+
+'interface translation project': paragraphs_iframe_preview
+'interface translation server pattern': modules/custom/%project/translations/%project.%language.po

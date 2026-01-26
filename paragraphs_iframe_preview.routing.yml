@@ -1,0 +1,8 @@
+paragraphs_iframe_preview.paragraph_iframe_preview:
+  path: '/paragraph-iframe-preview/{paragraph_uuid}'
+  defaults:
+    _controller: '\Drupal\paragraphs_iframe_preview\Controller\ParagraphsIframePreviewController::paragraphIframePreview'
+  options:
+    no_cache: TRUE
+  requirements:
+    _role: 'administrator+content_editor'
