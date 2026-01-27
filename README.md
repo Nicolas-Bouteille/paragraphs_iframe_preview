@@ -150,3 +150,21 @@ This template only renders:
 ```
 
 This results in a clean, lightweight preview focused solely on the paragraph content.
+
+## Requirements
+
+- [Paragraphs](https://www.drupal.org/project/paragraphs)
+
+## Installation
+
+Install as you would normally install a contributed Drupal module. For further
+information, see
+[Installing Drupal Modules](https://www.drupal.org/docs/extending-drupal/installing-drupal-modules).
+
+## Configuration
+
+- In the form display settings of the paragraph field, set "closed mode" to "Preview", not "Summary".
+- For an even better experience, set "default edit mode" to "Closed" so that the preview is displayed by default.
+
+## Maintainers
+- [Nicolas Bouteille](https://www.drupal.org/u/nicolas-bouteille)

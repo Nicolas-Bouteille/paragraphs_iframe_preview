@@ -1,4 +1,7 @@
 <?php
+/**
+ * Implements hook_theme().
+ */
 function paragraphs_iframe_preview_theme() {
   return [
     'page__paragraph_iframe_preview' => ['base hook' => 'page'],
@@ -6,23 +9,34 @@ function paragraphs_iframe_preview_theme() {
   ];
 }
 
+/**
+ * Implements hook_preprocess_html().
+ *
+ * Removes page chrome for paragraph iframe previews.
+ */
 function paragraphs_iframe_preview_preprocess_html(array &$variables) {
   if (\Drupal::routeMatch()->getRouteName() === 'paragraphs_iframe_preview.paragraph_iframe_preview') {
     unset($variables['page_top'], $variables['page_bottom'], $variables['attributes']);
   }
 }
 
+/**
+ * Implements hook_preprocess_paragraph__preview().
+ *
+ * Stores the temporary paragraph entity in PrivateTempStoreFactory so it can be
+ * retrieved later in the iframe preview context.
+ *
+ */
 function paragraphs_iframe_preview_preprocess_paragraph__preview(array &$variables) {
-  // Drupal gives us the correct version of the paragraph entity we want to display
-  // either the temporary one if we clicked Collapsed, or the last officially saved version if we come back to the node edit form
-  // in case of a temporary modified paragraph, the entity is not persisted in database, so we store it in the key_value_expire table
-  // as tempstore.private.paragraph_preview, with the uuid as name (because the paragraph may still not have an ID yet)
-  // later on, when we need to render the paragraph in iFrame mode, we will be able to retrieve this temporary paragraph from its uuid
+  // Drupal already provides either:
+  // - the temporary modified version if the paragraph is collapsed
+  // - or the last saved version if returning to the node edit form
   $paragraph = $variables['elements']['#paragraph'];
   /** @var \Drupal\Core\TempStore\PrivateTempStoreFactory $tempstore_factory */
-  $tempstore_factory = \Drupal::service('tempstore.private');
-  $paragraph_preview_store = $tempstore_factory->get('paragraph_preview');
+  $tempstore_factory = \Drupal::service('tempstore.private'); // stores inside key_value_expire table
+  $paragraph_preview_store = $tempstore_factory->get('paragraph_preview'); // where collection = tempstore.private.paragraph_preview
   $paragraph_uuid = $paragraph->uuid();
+  // Uses the paragraph UUID as the storage key (column name) since the paragraph may not yet have a database ID
   $paragraph_preview_store->set($paragraph_uuid, $paragraph);
   $variables['paragraph_uuid'] = $paragraph_uuid;
   $variables['paragraph_bundle'] = $paragraph->bundle();

@@ -1,3 +1,8 @@
+/**
+ * @file
+ * Styles for Paragraphs iframe preview
+ */
+
 .paragraph-iframe-preview {
   iframe {
     border: none;
