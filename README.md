@@ -16,9 +16,13 @@ As a result, the preview does not accurately reflect how the paragraph will look
 
 The goal of this module is to render paragraph previews using the **frontend theme**, so the preview is as faithful as possible to the final output.
 
+![Iframe preview of a paragraph](images/paragraph-iframe-preview.jpg)
+
 To achieve this, the paragraph preview is rendered inside an **iframe**.
 
-The module also supports paragraphs embedded inside other paragraphs.
+The module also supports nested paragraphs.
+
+![Iframe preview of a nested paragraph](images/nested-paragraphs.jpg)
 
 ---
 
@@ -28,15 +32,15 @@ For an optimal user experience, and to make the preview look as close as possibl
 
 ### CSS selectors relying on parent containers
 
-Let’s take the example of a **block** that displays multiple testimonials side by side. All `.testimonial` elements will typically be wrapped in a container such as `#testimonials`.
+Let’s take the example of a **block** that displays multiple tiles side by side. All `.tile` elements will typically be wrapped in a container such as `#tiles`.
 
-In the paragraph preview context, this container does **not** exist. As a result:
+In the paragraph preview context of a single tile, this container does **not** exist. As a result:
 
-* Any SCSS written like this will **not apply** in the iframe preview context:
+* Any SCSS written like this will **not apply**:
 
 ```scss
-#testimonials {
-  .testimonial {
+#tiles {
+  .tile {
     /* ... */
   }
 }
@@ -47,18 +51,18 @@ In the paragraph preview context, this container does **not** exist. As a result
 * Any JavaScript relying on the parent container will also **not be triggered**:
 
 ```js
-once('collapse-testimonials', '#testimonials', context).forEach(container => {
-  collapseLongTestimonials();
+once('shuffle-tiles', '#tiles', context).forEach(container => {
+  shuffleTiles();
 });
 ```
 
 ### Library attachment location
 
-If your CSS or JavaScript libraries are attached at the container level — the block in this example — they will not be attached in the context of a single paragraph iframe preview.
+If your CSS or JavaScript libraries are attached at the container level — the block in this example — they will not be attached in the context of a single tile preview.
 
 In such cases, you may need to attach your libraries:
 
-* at the paragraph level
+* at the tile level
 * or globally (with proper scoping)
 
 ### iframe-specific styling
@@ -71,7 +75,7 @@ For example, you could define a `max-width` for paragraphs that are normally ren
 
 ```scss
 body.path-paragraph-iframe-preview {
-  .paragraph--type--testimonial {
+  .paragraph--type--tile {
     max-width: 300px;
   }
 }
@@ -84,8 +88,8 @@ By default, the iframe height is set to **500px**, but this can be adjusted per 
 The iframe is wrapped in a container with the `.paragraph-iframe-preview` class, along with the paragraph bundle name. For example:
 
 ```css
-.paragraph-iframe-preview.testimonial iframe {
-  height: 300px;
+.paragraph-iframe-preview.tile iframe {
+  height: 200px;
 }
 ```
 
