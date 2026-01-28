@@ -1,3 +1,5 @@
+Renders paragraph preview in closed mode using the frontend theme inside an iframe
+
 ## Problem
 
 When editing a node, paragraphs can be collapsed — either by default or by clicking the **Collapse** button.
