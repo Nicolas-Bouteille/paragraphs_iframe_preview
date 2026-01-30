@@ -1,6 +1,25 @@
-Renders paragraph preview in closed mode using the frontend theme inside an iframe
+# Paragraph Iframe Preview
 
-## Problem
+This module renders **paragraph previews** in a collapsed state inside an **iframe**, using the **frontend theme** to closely match the final rendered output.
+
+![Iframe preview of a paragraph](images/paragraph-iframe-preview.jpg)
+
+**Nested paragraphs** are also supported.
+
+![Iframe preview of a nested paragraph](images/nested-paragraphs.jpg)
+
+## Table of contents
+
+- [Context](#context)
+- [Configuration](#configuration)
+- [Necessary adjustments](#necessary-adjustments)
+- [Under the hood](#under-the-hood)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Maintainers](#maintainers)
+
+
+## Context
 
 When editing a node, paragraphs can be collapsed — either by default or by clicking the **Collapse** button.
 
@@ -9,22 +28,15 @@ In the *Form display* settings of a paragraphs field, you can choose what should
 * a summary
 * or a preview
 
-When the **Preview** option is selected, the preview is rendered using the **admin theme**.
-As a result, the preview does not accurately reflect how the paragraph will look on the frontend.
+Without this module, when the **Preview** option is selected, the preview is rendered using the **admin theme**.
+As a result, the preview does not accurately reflect how the paragraph will look on the frontend. This module solves this.
 
 ---
 
-## Solution
+## Configuration
 
-The goal of this module is to render paragraph previews using the **frontend theme**, so the preview is as faithful as possible to the final output.
-
-![Iframe preview of a paragraph](images/paragraph-iframe-preview.jpg)
-
-To achieve this, the paragraph preview is rendered inside an **iframe**.
-
-The module also supports nested paragraphs.
-
-![Iframe preview of a nested paragraph](images/nested-paragraphs.jpg)
+- In the form display settings of the paragraph field, set "closed mode" to "Preview", not "Summary".
+- For an even better experience, set "default edit mode" to "Closed" so that the preview is displayed by default when loading the node edit form.
 
 ---
 
@@ -167,10 +179,7 @@ Install as you would normally install a contributed Drupal module. For further
 information, see
 [Installing Drupal Modules](https://www.drupal.org/docs/extending-drupal/installing-drupal-modules).
 
-## Configuration
 
-- In the form display settings of the paragraph field, set "closed mode" to "Preview", not "Summary".
-- For an even better experience, set "default edit mode" to "Closed" so that the preview is displayed by default.
 
 ## Maintainers
 - [Nicolas Bouteille](https://www.drupal.org/u/nicolas-bouteille)
