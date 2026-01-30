@@ -8,6 +8,8 @@ This module renders **paragraph previews** in a collapsed state inside an **ifra
 
 ![Iframe preview of a nested paragraph](images/nested-paragraphs.jpg)
 
+---
+
 ## Table of contents
 
 - [Context](#context)
@@ -31,14 +33,10 @@ In the *Form display* settings of a paragraphs field, you can choose what should
 Without this module, when the **Preview** option is selected, the preview is rendered using the **admin theme**.
 As a result, the preview does not accurately reflect how the paragraph will look on the frontend. This module solves this.
 
----
-
 ## Configuration
 
 - In the form display settings of the paragraph field, set "closed mode" to "Preview", not "Summary".
 - For an even better experience, set "default edit mode" to "Closed" so that the preview is displayed by default when loading the node edit form.
-
----
 
 ## Necessary adjustments
 
@@ -109,7 +107,7 @@ The iframe is wrapped in a container with the `.paragraph-iframe-preview` class,
 
 ⚠️ **Important:** this styling must be done from your **admin theme’s CSS**, since the frontend theme only applies inside the iframe.
 
----
+
 
 ## Under the hood
 
@@ -117,7 +115,6 @@ The iframe is wrapped in a container with the `.paragraph-iframe-preview` class,
 
 The module overrides `paragraph--preview.html.twig` to render the paragraph inside an iframe.
 
----
 
 ### Handling unsaved paragraphs
 
@@ -132,7 +129,6 @@ To solve this, the paragraph entity is temporarily stored using the same mechani
 
 The temporary storage is handled in `template_preprocess_paragraph__preview()`.
 
----
 
 ### Rendering the iframe preview
 
@@ -145,7 +141,6 @@ In this controller:
 
 This ensures the paragraph is rendered exactly as it would be on the frontend.
 
----
 
 ### Minimal page rendering for the iframe
 
